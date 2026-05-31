@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Orbitron", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-brand-cyan: #00ffd1;
+  --color-brand-blue: #0055ff;
+  --color-neon-blue: #00bfff;
+  --color-space-dark: #030712;
+}
+
+@layer utilities {
+  .glow-cyan {
+    text-shadow: 0 0 12px rgba(0, 255, 209, 0.5), 0 0 24px rgba(0, 255, 209, 0.2);
+  }
+  .glow-blue {
+    text-shadow: 0 0 12px rgba(0, 191, 255, 0.5), 0 0 24px rgba(0, 191, 255, 0.2);
+  }
+  .glow-box-cyan {
+    box-shadow: 0 0 20px rgba(0, 255, 209, 0.2), inset 0 0 15px rgba(0, 255, 209, 0.05);
+  }
+  .glow-box-blue {
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.2), inset 0 0 15px rgba(0, 191, 255, 0.05);
+  }
+  .bg-grid-cyber {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 191, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 191, 255, 0.03) 1px, transparent 1px);
+  }
+  .bg-grid-cyber-fine {
+    background-size: 10px 10px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 191, 255, 0.01) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 191, 255, 0.01) 1px, transparent 1px);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 191, 255, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 209, 0.4);
+}
+
+/* Interactive elements transition */
+* {
+  scroll-behavior: smooth;
+  user-select: none;
+}
+
+/* Keyframe animations for cinematic glow pulses and orbits */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(50px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+.float-particle {
+  animation: particleFloat 15s linear infinite;
+}
+
+.cyber-scan::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 209, 0.6), transparent);
+  animation: scanline 4s linear infinite;
+}
+
+/* Animation utilities for Intersection Observer */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(12px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}

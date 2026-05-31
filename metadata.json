@@ -1,0 +1,6 @@
+{
+  "name": "StrideSync",
+  "description": "A premium, futuristic one-page website presenting StrideSync's AI-powered smart insoles featuring posture tracking, pressure mapping, and performance analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
